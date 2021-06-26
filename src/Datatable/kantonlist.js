@@ -1,5 +1,6 @@
 /*import React, { useState } from "react";
 import Select from "react-select";
+
 function SelectValue({}) {
   const options = [
     { label: "Basel-Stadt", value: "Basel-Stadt" },
@@ -33,6 +34,7 @@ function SelectValue({}) {
   const [result, kantonvalue] = useState(options.label);
   const kantonHandler = (e) => {
     kantonvalue(e.label);
+    console.log(e.value);
   };
 
   return (
@@ -44,7 +46,7 @@ function SelectValue({}) {
 }
 export default SelectValue;*/
 
-import React from "react";
+/*import React from "react";
 import ReactDOM from "react-dom";
 
 export class SelectValue extends React.Component {
@@ -137,10 +139,13 @@ export class SelectValue extends React.Component {
                 key={course.first_name}
                 style={({ margin: "10px" }, { padding: "10px" })}
               >
-                {course.first_name}
-                {course.last_name}
-                {course.email}
-                {course.address}
+                <list>
+                  {" "}
+                  <td>Name:{course.first_name}</td>{" "}
+                  <td>Lastname: {course.last_name}</td>
+                  {course.email}
+                  {course.address}
+                </list>
                 <br />
               </div>
             ))}
@@ -152,4 +157,4 @@ export class SelectValue extends React.Component {
 }
 
 ReactDOM.render(<SelectValue />, document.querySelector("#root"));
-export default SelectValue;
+export default SelectValue;*/

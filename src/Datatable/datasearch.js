@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Datatable from "./index.js";
+import Datatable from "./datatable.js";
 import JSONDATA from "../sql.json";
 import SelectValue from "./kantonlist";
 
@@ -7,7 +7,7 @@ import "../App.css";
 require("es6-promise").polyfill();
 require("isomorphic-fetch");
 
-function DataSearch() {
+function DataSearch(props) {
   const [data, setData] = useState([]);
   const [q, setQ] = useState("");
 
@@ -17,19 +17,20 @@ function DataSearch() {
     "last_name",
     "email",
   ]);
-
   useEffect(() => {
+    fetch("../sql.json");
     setData(JSONDATA);
   }, []);
 
   function Search(rows) {
-    const searchData = rows;
-
-    return searchData.filter((row) =>
-      searchColumns.some(
-        (column) =>
-          row[column].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
-      )
+    return rows.filter(
+      (row) =>
+        row.kanton.toString().toLowerCase().indexOf(q) > -1 ||
+        row.first_name.toString().toLowerCase().indexOf(q) > -1 ||
+        row.last_name.toString().toLowerCase().indexOf(q) > -1 ||
+        row.email.toString().toLowerCase().indexOf(q) > -1 ||
+        row.address.toString().toLowerCase().indexOf(q) > -1 ||
+        row.city.toString().toLowerCase().indexOf(q) > -1
     );
   }
 
@@ -45,10 +46,7 @@ function DataSearch() {
           onChange={(e) => setQ(e.target.value)}
         />
       </div>
-      <div>
-        {" "}
-        <SelectValue id="data_listem" />
-      </div>
+
       <div id="data_liste">
         <Datatable data={Search(data)} />
       </div>

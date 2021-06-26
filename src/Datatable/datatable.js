@@ -1,10 +1,11 @@
 import React from "react";
-import SelectValue from "./kantonlist";
-export default function Datatable({ data,SelectValue }) {
+import "../sql.json";
+import "./datatable.css";
+export default function Datatable({ data }) {
   const columns = data[0] && Object.keys(data[0]);
   return (
     <table cellPadding={0} cellSpacing={0}>
-      <thead>
+      <thead className="a">
         <tr>{data[0] && columns.map((heading) => <th>{heading}</th>)} </tr>
       </thead>
       <tbody>
