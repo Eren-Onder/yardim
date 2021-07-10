@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/*import React, { useState } from "react";
 import axios from "axios";
 import { setUserSession } from "./Utils/Common";
 
@@ -13,7 +13,7 @@ function Login(props) {
     setError(null);
     setLoading(true);
     axios
-      .post("http://localhost:4000/users/signin", {
+      .post("http://localhost:4000/signin", {
         username: username.value,
         password: password.value,
       })
@@ -75,4 +75,23 @@ const useFormInput = (initialValue) => {
   };
 };
 
+export default Login;*/
+
+import LoginButton from "./Utils/LoginButton";
+import LogoutButton from "./Utils/LogoutButton";
+import React from "react";
+import Profile from "./Utils/Profile";
+import "./Login.css";
+import { useAuth0 } from "@auth0/auth0-react";
+function Login() {
+  const { isLoading } = useAuth0();
+  if (isLoading) return <div>loading...</div>;
+  return (
+    <>
+      <LoginButton />
+      <LogoutButton />
+      <Profile />
+    </>
+  );
+}
 export default Login;

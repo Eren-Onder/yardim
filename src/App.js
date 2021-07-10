@@ -3,19 +3,30 @@ import Navbar from "./components/Navbar/Navbar";
 import "./App.css";
 import Home from "./components/pages/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Services from "./components/pages/Services";
-import Products from "./components/pages/Products";
-import SignUp from "./components/Navbar/Login";
+
+import Products from "./components/pages/Product";
+
+import { Auth0Provider } from "@auth0/auth0-react";
+import Login from "./components/Navbar/Login";
+
 function App() {
+  const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+  const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
   return (
     <>
       <Router>
         <Navbar />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/services" component={Services} />
-          <Route path="/products" component={Products} />
-          <Route path="/sign-up" component={SignUp} />
+
+          <Auth0Provider
+            domain={domain}
+            clientId={clientId}
+            redirectUri={window.location.origin}
+          >
+            <Route path="/products" component={Products} />
+            <Login />
+          </Auth0Provider>
         </Switch>
       </Router>
     </>

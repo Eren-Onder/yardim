@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Datatable from "./datatable.js";
-import JSONDATA from "../sql.json";
-import SelectValue from "./kantonlist";
+import Data from "../sql.json";
 
 import "../App.css";
 require("es6-promise").polyfill();
@@ -19,7 +18,7 @@ function DataSearch(props) {
   ]);
   useEffect(() => {
     fetch("../sql.json");
-    setData(JSONDATA);
+    setData(Data);
   }, []);
 
   function Search(rows) {
